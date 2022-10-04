@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { AuthService } from '../auth.service';
 
 @Component({
   selector: 'app-bookheader',
@@ -7,9 +9,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class BookheaderComponent implements OnInit {
 
-  constructor() { }
+  constructor(private authservice:AuthService,private router: Router ) { }
 
   ngOnInit(): void {
+  }
+
+  logoutUser(){
+    localStorage.removeItem('token');
+    this.router.navigate(['']);
   }
 
 }

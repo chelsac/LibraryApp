@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { AuthService } from '../auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -11,11 +13,20 @@ export class LoginComponent implements OnInit {
   User={email:'',
         password:''}
 
-  userVerify(){
-    alert("Successful login");
+  loginUser(){
+    this.authservice.loginUser(this.User)
+    .subscribe({
+      next: (res) => {
+        localStorage.setItem('token',res.token)
+        location.pathname = ('/books');
+      },
+      error: (err) => alert(err.error),
+      complete: () => console.info('complete') 
+    }
+    );
   }
 
-  constructor() { }
+  constructor(private authservice:AuthService,private router: Router ) { }
 
   ngOnInit(): void {
   }

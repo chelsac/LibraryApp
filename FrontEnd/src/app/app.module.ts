@@ -11,8 +11,10 @@ import { HomeComponent } from './home/home.component';
 import { BookheaderComponent } from './bookheader/bookheader.component';
 import { BooksComponent } from './books/books.component';
 import { NewbookComponent } from './newbook/newbook.component';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule ,HTTP_INTERCEPTORS } from '@angular/common/http';
 import { UpdatebookComponent } from './updatebook/updatebook.component';
+import { AuthService } from './auth.service';
+import { TokenIntercepterService } from './token-intercepter.service';
 
 @NgModule({
   declarations: [
@@ -33,7 +35,12 @@ import { UpdatebookComponent } from './updatebook/updatebook.component';
     FormsModule,
     HttpClientModule
   ],
-  providers: [],
+  providers: [AuthService,
+  {
+    provide:HTTP_INTERCEPTORS,
+    useClass:TokenIntercepterService,
+    multi:true
+  }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

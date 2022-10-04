@@ -7,6 +7,73 @@ const app=new express();
 app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({extended:true}));
+const jwt=require('jsonwebtoken');
+
+
+app.post("/login", (req, res) => {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Method:GET,POST,PUT,DELETE");
+  userData
+  .findOne({ email: req.body.email, password: req.body.password },(err,user)=>{
+    if(err){
+      console.log("error is",err)
+    }
+    else{
+      console.log(user)
+    }
+  })
+  .clone()
+  .then((user) => {
+    if(user !== null){
+    let payload = { subject: user.email + user.password };
+    let token = jwt.sign(payload, "secretKey");
+    res.status(200).send({ token });
+    }
+    else{
+      res.status(401).send('Wrong Credentials')
+    }
+  });
+
+});
+
+//dummy
+
+// email="admin@gmail.com";
+// password="12345678";
+
+// app.post('/login',function(req,res){
+//   if(email != req.body.email){
+//     res.status(401).send('Invalid Username');
+//   }
+//   else if(password != req.body.password){
+//     res.status(401).send('Invalid password');
+//   }
+//   else{
+//     let payload={subject:email+password};
+//     let token=jwt.sign(payload,'secretkey')
+//     res.status(200).send({token});
+//   }
+
+//   })
+
+  function verifyToken(req,res,next){
+    if(!req.headers.authorization){
+      return res.status(401).send('Unauthorized request');
+    }
+    let token=req.headers.authorization.split(' ')[1];
+    if(token==null){
+      return res.status(401).send('Unauthorized request');
+    }
+    let payload=jwt.verify(token,'secretkey');
+    console.log(payload);
+    if(!payload){
+      return res.status(401).send('Unauthorized request');
+    }
+    req.userId=payload.subject;
+    next();
+  }
+
+//dummy end
 
 app.post('/addbook',function(req,res){
 var item={

@@ -1,6 +1,6 @@
 <app-header></app-header>
 <div class="container myloginclass">
-<form #userlogin="ngForm" (ngSubmit)="userVerify()">
+<form #userlogin="ngForm" (ngSubmit)="loginUser()">
     <div class="form-group">
       <label for="email">Email address</label>
       <input type="email" class="form-control" #email="ngModel" [class.is-invalid]="email.invalid && email.touched" name="email" [(ngModel)]="User.email" required pattern="^[a-z0-9.%+]+@[a-z0-9.-]+\.[a-z]{2,4}">
