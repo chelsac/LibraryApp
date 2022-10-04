@@ -1,0 +1,13 @@
+.myloginclass{
+    transition: .5s ease;
+    padding: 50px;
+    border-radius: 10px;
+    margin-top: 25px;
+    width: 450px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.801), 0 6px 20px 0 rgba(0, 0, 0, 0.705); 
+}
+
+.myloginclass:hover{
+    transform: scale(1.08);
+  
+}

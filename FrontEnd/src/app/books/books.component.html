@@ -1,0 +1,19 @@
+<app-bookheader></app-bookheader>
+
+<div class="card mb-3 mybooklist" *ngFor="let i of books">
+    <div class="row no-gutters">
+      <div class="col-md-4">
+        <img src={{i.image}} class="card-img">
+      </div>
+      <div class="col-md-8">
+        <div class="card-body">
+          <h5 class="card-title">{{i.title}}</h5>
+          <h6 class="card-text">Author: {{i.author}}</h6>
+          <p class="card-text">{{i.description}}</p>
+          <button class="btn btn-dark" (click)="editBook(i)">Update</button>
+          <button  class="btn btn-dark" (click)="delete(i)">Delete</button>
+          
+        </div>
+      </div>
+    </div>
+  </div>

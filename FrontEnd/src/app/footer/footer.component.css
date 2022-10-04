@@ -1,0 +1,26 @@
+.footer-copyright{
+    background-color: rgba(0, 0, 0);
+    color: white;
+    text-align: center;
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    font-size: 15px;
+    padding-top: 2px;
+  }
+
+  .icon{
+    float: right;
+    font-size: 20px;
+}
+
+.icon a{
+    padding-left: 2px;
+    padding-right: 2px;
+  color: white;
+}
+.icon a:visited {
+  color: white;
+
+}
