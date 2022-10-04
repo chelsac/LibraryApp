@@ -37,7 +37,7 @@ export class BooksComponent implements OnInit {
 
   editBook(book:any){
       localStorage.setItem("editBookId", book._id.toString());
-      location.pathname = ('/books');
+      location.pathname = ('/update');
   }
 
 }

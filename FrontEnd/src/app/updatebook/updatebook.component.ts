@@ -31,9 +31,7 @@ export class UpdatebookComponent implements OnInit {
     this.bookservice.updateBook(this.book);
     alert("Book Updated");
     console.log(this.book);
-    this.router.navigate(['/mybooks'])
+    location.pathname = ('/books');
   }
-
-
 
 }

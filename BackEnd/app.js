@@ -1,6 +1,7 @@
 const express=require('express');
 const cors=require('cors');
 const bookData=require('./model/bookdata');
+const userData=require('./model/userdata');
 
 const app=new express();
 app.use(cors());
@@ -20,6 +21,19 @@ bookData.find().then(function(data){
     res.send(data);
 })
 })
+
+app.post('/adduser',function(req,res){
+  var item={
+      username:req.body.username,
+      email:req.body.email,
+      password:req.body.password
+  }
+  var data=userData(item);
+  data.save();
+  userData.find().then(function(data){
+      res.send(data);
+  })
+  })
 
 
 app.get('/books', function(req,res){

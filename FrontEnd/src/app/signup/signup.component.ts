@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { ServiceuserService } from '../serviceuser.service'
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-signup',
@@ -11,9 +13,15 @@ export class SignupComponent implements OnInit {
   password:''}
 
 userVerify(){
-alert("User Successfully added");
+  console.log(this.User);
+  this.userservice.addusers(this.User)
+  .subscribe((res)=>{
+    alert("User Successfully added");
+    location.pathname = ('/login');
+  });
+
 }
-  constructor() { }
+  constructor(private userservice:ServiceuserService,private router: Router ) { }
 
   ngOnInit(): void {
   }

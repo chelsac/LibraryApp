@@ -17,7 +17,7 @@ export class ServicebookService {
   }
   geteditBook(_id:any){
 
-    return this.http.get('http://localhost:4400/'+_id);
+    return this.http.get('http://localhost:3000/'+_id);
   }
   
   deleteBook(id:any){
@@ -27,7 +27,9 @@ export class ServicebookService {
 
   updateBook(book:any){
     console.log(book);
-    return this.http.put('http://localhost:4400/edit', {book})
+    return this.http.put('http://localhost:3000/edit', {book})
     .subscribe(data=> {console.log(data)})
   }
+
+  
 }
